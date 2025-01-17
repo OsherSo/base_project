@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "setup-project": "npm i && cd client && npm i",
+    "install": "npm i && cd client && npm i",
+    "update": "ncu --target minor -u && npm i && cd client && ncu --target minor -u && npm i",
     "server": "nodemon server",
     "client": "cd client && npm run dev",
     "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""

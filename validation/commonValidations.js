@@ -44,7 +44,11 @@ const validatePassword = () =>
     .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 8 })
-    .withMessage("Password must be at least 8 characters long");
+    .withMessage("Password must be at least 8 characters long")
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/)
+    .withMessage(
+      "Password must include one lowercase, uppercase, number and special character",
+    );
 
 const validateOptionalField = (field, values) =>
   body(field).optional().isIn(values).withMessage(`Invalid ${field}`);

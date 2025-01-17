@@ -4,11 +4,13 @@ import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
+import helmet from "helmet";
 import morgan from "morgan";
 import express from "express";
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import rateLimit from "express-rate-limit";
 import { StatusCodes } from "http-status-codes";
 
 import authRouter from "./routes/authRouter.js";
@@ -20,6 +22,15 @@ import errorHandler from "./middleware/errorHandler.js";
 dotenv.config();
 
 const app = express();
+
+app.use(helmet());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
+
+app.use("/api/", limiter);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

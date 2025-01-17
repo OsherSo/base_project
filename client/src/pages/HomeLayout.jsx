@@ -1,5 +1,11 @@
-const HomeLayout = () => {
-  return <h1 className="text-3xl font-bold underline">HomeLayout</h1>;
-};
+import { Outlet } from "react-router-dom";
+
+function HomeLayout() {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+}
 
 export default HomeLayout;

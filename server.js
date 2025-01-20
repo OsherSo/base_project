@@ -14,10 +14,13 @@ import rateLimit from "express-rate-limit";
 import { StatusCodes } from "http-status-codes";
 
 import authRouter from "./routes/authRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 import { PORT, FAIL } from "./utils/constants.js";
 
 import errorHandler from "./middleware/errorHandler.js";
+
+import { authenticateUser } from "./middleware/auth.js";
 
 dotenv.config();
 
@@ -44,6 +47,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", authenticateUser, userRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./public", "index.html"));

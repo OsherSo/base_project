@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 const FormRow = ({ type, name, labelText, defaultValue, onChange }) => {
   return (
     <div>
@@ -14,14 +12,6 @@ const FormRow = ({ type, name, labelText, defaultValue, onChange }) => {
       />
     </div>
   );
-};
-
-FormRow.propTypes = {
-  type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  labelText: PropTypes.string,
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func.isRequired,
 };
 
 export default FormRow;
